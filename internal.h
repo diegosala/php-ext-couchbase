@@ -129,9 +129,9 @@
 /* pecl-memcached requires this bit be set as well */
 #define COUCHBASE_COMPRESSION_MCISCOMPRESSED (1<<4)
 
-#define COUCHBASE_GET_COMPRESSION(f)		 ((f) >> 5)
+#define COUCHBASE_GET_COMPRESSION(f)         ((f & COUCHBASE_COMPRESSION_MASK) >> 5)
 #define COUCHBASE_SET_COMPRESSION(f, c)		 ((f) = ((f) & ~COUCHBASE_COMPRESSION_MASK) | (c) << 5)
-#define COUCHBASE_GET_PRESERVE_ORDER		(1<<0)
+#define COUCHBASE_GET_PRESERVE_ORDER		 (1<<0)
 
 #define COUCHBASE_MIN_PERSIST 0
 #define COUCHBASE_MAX_PERSIST 4
