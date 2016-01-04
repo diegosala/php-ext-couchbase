@@ -2,6 +2,9 @@
 
 A PHP extension wrapping libcouchbase.
 
+*Note: This extension has been deprecated and is superseeded by:*
+https://github.com/couchbase/php-couchbase/
+
 ## Dependencies
 
 libcouchbase
