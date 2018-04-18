@@ -230,6 +230,8 @@ PHP_METHOD(couchbase, getDesignDoc);
 PHP_METHOD(couchbase, setDesignDoc);
 PHP_METHOD(couchbase, deleteDesignDoc);
 PHP_METHOD(couchbase, listDesignDocs);
+PHP_METHOD(couchbase, getConfigTimeout);
+PHP_METHOD(couchbase, setConfigTimeout);
 
 PHP_FUNCTION(couchbase_connect);
 PHP_FUNCTION(couchbase_add);

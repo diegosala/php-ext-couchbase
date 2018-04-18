@@ -633,7 +633,9 @@ static zend_function_entry couchbase_methods[] = {
 	PHP_ME(couchbase, deleteDesignDoc, arginfo_m_delget_design_doc, ZEND_ACC_PUBLIC)
 	PHP_ME(couchbase, listDesignDocs, arginfo_m_list_design_docs, ZEND_ACC_PUBLIC)
 	PHP_ME(couchbase, getTimeout, arginfo_m_get_timeout, ZEND_ACC_PUBLIC)
-	PHP_ME(couchbase, setTimeout, arginfo_m_set_timeout, ZEND_ACC_PUBLIC) {
+	PHP_ME(couchbase, getConfigTimeout, arginfo_m_get_timeout, ZEND_ACC_PUBLIC)
+	PHP_ME(couchbase, setTimeout, arginfo_m_set_timeout, ZEND_ACC_PUBLIC)
+	PHP_ME(couchbase, setConfigTimeout, arginfo_m_set_timeout, ZEND_ACC_PUBLIC) {
 		NULL, NULL, NULL
 	}
 };
@@ -873,10 +875,19 @@ PHP_METHOD(couchbase, getTimeout)
 	php_couchbase_get_timeout_impl(INTERNAL_FUNCTION_PARAM_PASSTHRU, 1);
 }
 
+PHP_METHOD(couchbase, getConfigTimeout)
+{
+	php_couchbase_get_config_timeout_impl(INTERNAL_FUNCTION_PARAM_PASSTHRU, 1);
+}
 
 PHP_METHOD(couchbase, setTimeout)
 {
 	php_couchbase_set_timeout_impl(INTERNAL_FUNCTION_PARAM_PASSTHRU, 1);
+}
+
+PHP_METHOD(couchbase, setConfigTimeout)
+{
+        php_couchbase_set_config_timeout_impl(INTERNAL_FUNCTION_PARAM_PASSTHRU, 1);
 }
 
 /* procedural APIs*/

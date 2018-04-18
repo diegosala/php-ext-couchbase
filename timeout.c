@@ -29,6 +29,17 @@ void php_couchbase_get_timeout_impl(INTERNAL_FUNCTION_PARAMETERS, int oo)
 	RETURN_LONG(lcb_get_timeout(couchbase_res->handle));
 }
 
+void php_couchbase_get_config_timeout_impl(INTERNAL_FUNCTION_PARAMETERS, int oo)
+{
+        php_couchbase_res *couchbase_res;
+        int argflags = oo ? PHP_COUCHBASE_ARG_F_OO : PHP_COUCHBASE_ARG_F_FUNCTIONAL;
+        PHP_COUCHBASE_GET_PARAMS(couchbase_res, argflags, "");
+
+	lcb_uint32_t config_time_out;
+	lcb_cntl(couchbase_res->handle, LCB_CNTL_GET, LCB_CNTL_CONFIGURATION_TIMEOUT, &config_time_out);
+        RETURN_LONG(config_time_out);
+}
+
 PHP_COUCHBASE_LOCAL
 void php_couchbase_set_timeout_impl(INTERNAL_FUNCTION_PARAMETERS, int oo)
 {
@@ -40,6 +51,19 @@ void php_couchbase_set_timeout_impl(INTERNAL_FUNCTION_PARAMETERS, int oo)
 
 	lcb_set_timeout(couchbase_res->handle, (lcb_uint32_t)tmo);
 	RETURN_TRUE;
+}
+
+PHP_COUCHBASE_LOCAL
+void php_couchbase_set_config_timeout_impl(INTERNAL_FUNCTION_PARAMETERS, int oo)
+{
+        php_couchbase_res *couchbase_res;
+        long tmo;
+
+        int argflags = oo ? PHP_COUCHBASE_ARG_F_OO : PHP_COUCHBASE_ARG_F_FUNCTIONAL;
+        PHP_COUCHBASE_GET_PARAMS(couchbase_res, argflags, "l", &tmo);
+
+	lcb_cntl(couchbase_res->handle, LCB_CNTL_SET, LCB_CNTL_CONFIGURATION_TIMEOUT, &tmo);
+        RETURN_TRUE;
 }
 
 /*
